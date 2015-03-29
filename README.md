@@ -55,9 +55,9 @@ Type: `Object`
 A question configuration object.
 
 #### conversation.questions[questionId].phrase
-Type: `String`
+Type: `String|Array`
 
-The phrase of the question.
+The phrase of the question. If is an array will gets randomly one of the phrases.
 
 #### conversation.questions[questionId].answers
 Type: `Array`
