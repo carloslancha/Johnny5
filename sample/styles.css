@@ -1,0 +1,55 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: "proxima-nova", sans-serif;
+	font-size: 16px;
+}
+
+body {
+	background-color: #FCFCFC;
+}
+
+#wraper {
+	width: 500px;
+	margin: 10px auto;
+	border: 1px solid #EFEFEF;
+	background-color: #FFFFFF;
+}
+
+#output {
+	height: 300px;
+	overflow-y: scroll;
+	padding: 0 10px;
+}
+
+#output p {
+	padding: 20px;
+	margin: 10px 0;
+	color: #4D5159;
+}
+
+#output p.robot {
+	background-color: #FFF3D9;
+	text-align: right;
+}
+
+#output p.user {
+	background-color: #F0F6F6;
+}
+
+#input {
+	width: 100%;
+	padding: 20px;
+	border: none;
+	border-top: 1px solid #EFEFEF;
+	outline: none;
+	color: #4D5159;
+}
+
+#name{
+	padding: 10px;
+	margin-bottom: 10px;
+	background-color: #b05574;
+	color: #FFF;
+	text-align: center;
+}
