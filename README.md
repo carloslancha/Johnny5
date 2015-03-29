@@ -14,47 +14,59 @@ Johnny5(myConfig);
 
 #### input
 Type: `DOM element`
+
 The input element where the users will write their answers.
 
 #### output
 Type: `DOM element`
+
 The output element where Johnny5 will prints her phrases.
 
 #### conversation
 Type: `Object`
-The conversation screenplay
+
+The conversation screenplay.
 
 #### conversation.startPhrase
 Type: `String`
+
 The first question id. Johnny5 will start the conversation with that question.
 
 #### conversation.questions
 Type: `Object`
+
 The object with the questions.
 
 #### conversation.questions[questionId]
 Type: `Object`
+
 A question configuration object.
 
 #### conversation.questions[questionId].phrase
 Type: `String`
+
 The phrase of the question.
 
 #### conversation.questions[questionId].answers
 Type: `Array`
-List of posibles answers
+
+List of posibles answers.
 
 #### conversation.questions[questionId].answers[answer]
 Type: `Object`
-Answer configuration object
+
+Answer configuration object.
 
 #### conversation.questions[questionId].answers[answer].answer
 Type: `String | Function | Undefined`
+
 The possible answer or, if a function, the validation function of the answer. Must return a `Boolean`
+
 If is not defined will be used as default answer for the question.
 
 #### conversation.questions[questionId].answers[answer].goTo
 Type: `String`
+
 Id of the `conversation.questions` that Johnny5 will ask after the answer.
 
 
