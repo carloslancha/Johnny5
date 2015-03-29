@@ -5,10 +5,11 @@
 
 ## Getting started
 
-You just need to call Johnny5 function with the configuration of your conversation.
+You just need to instantiate Johnny5 function with the configuration of your conversation. To run it you need to run the method start.
 
 ```js
-Johnny5(myConfig);
+var myJohnny5 = Johnny5(myConfig);
+myJohnny5.start();
 ```
 ### Configuration
 
@@ -73,7 +74,7 @@ Id of the `conversation.questions` that Johnny5 will ask after the answer.
 ### Sample of use
 
 ```js
-Johnny5( {
+var myJohnny5 = new Johnny5( {
     input: document.getElementById('input'),
     output: document.getElementById('output'),
     conversation: {
@@ -151,4 +152,6 @@ Johnny5( {
         }
     }
 });
+
+myJohnny5.start();
 ```
