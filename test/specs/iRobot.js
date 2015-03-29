@@ -2,13 +2,13 @@ describe( 'I Robot', function () {
 
   describe( 'on first question', function () {
     it( 'prints the first phrase in the output', function () {
-      initIRobot();
+      initJohnny5();
 
       lastOutputMessageEqualsTo( ANY_CONVERSATION.questions[ 0 ].phrase );
     } );
 
     it( 'prints the expected phrase on allowed answer', function () {
-      initIRobot();
+      initJohnny5();
 
       insertAnswer( 'yes' );
 
@@ -16,7 +16,7 @@ describe( 'I Robot', function () {
     } );
 
     it( 'prints the expected phrase on other allowed answer', function () {
-      initIRobot();
+      initJohnny5();
 
       insertAnswer( 'no' );
 
@@ -24,7 +24,7 @@ describe( 'I Robot', function () {
     } );
 
     it( 'prints the expected phrase on not allowed answer', function () {
-      initIRobot();
+      initJohnny5();
 
       insertAnswer( 'i am your father' );
 
@@ -34,7 +34,7 @@ describe( 'I Robot', function () {
 
   describe( 'on not first question', function () {
     it( 'prints the expected phrase on allowed answer', function () {
-      initIRobot();
+      initJohnny5();
       insertAnswer( 'no' );
 
       insertAnswer( 'bah' );
@@ -43,7 +43,7 @@ describe( 'I Robot', function () {
     } );
 
     it( 'prints the expected phrase on not allowed answer', function () {
-      initIRobot();
+      initJohnny5();
       insertAnswer( 'no' );
 
       insertAnswer( 'i am your father' );
@@ -53,7 +53,7 @@ describe( 'I Robot', function () {
   } );
 
   it( 'prints the expected phrase if validates the answer with passed callback', function () {
-    initIRobot();
+    initJohnny5();
     insertAnswer( 'yes' );
 
     insertAnswer( 'email' );
@@ -62,7 +62,7 @@ describe( 'I Robot', function () {
   } );
 
   it( 'prints the expected phrase if does not alidate the answer with passed callback', function () {
-    initIRobot();
+    initJohnny5();
     insertAnswer( 'yes' );
 
     insertAnswer( 'i am your father' );
@@ -72,7 +72,7 @@ describe( 'I Robot', function () {
 
   beforeEach( function () {
     jasmine.getFixtures().fixturesPath = 'test/fixtures';
-    loadFixtures( 'iRobot.html' );
+    loadFixtures( 'Johnny5.html' );
   } );
 
   var ANY_INPUT = '#input',
@@ -154,8 +154,8 @@ describe( 'I Robot', function () {
   };
 
 
-  function initIRobot() {
-    iRobot( {
+  function initJohnny5() {
+    Johnny5( {
       input: $( ANY_INPUT )[ 0 ],
       output: $( ANY_OUTPUT )[ 0 ],
       conversation: ANY_CONVERSATION

@@ -1,4 +1,4 @@
-function iRobot( configuration ) {
+function Johnny5( configuration ) {
   var conversation,
     currentQuestion,
     prevQuestion,
@@ -51,7 +51,7 @@ function iRobot( configuration ) {
     } );
   }
 
-  function initialize() {
+  function initialize( configuration ) {
     conversation = configuration.conversation;
     input = configuration.input;
     output = configuration.output;
@@ -61,5 +61,5 @@ function iRobot( configuration ) {
     bindEvents();
   }
 
-  initialize();
+  initialize( configuration );
 }
