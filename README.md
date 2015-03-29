@@ -1,4 +1,5 @@
 # Johnny5
+<img src=johnny5.jpg/>
 > Johnny5 is a question-answer robot based in the conversation system of the clasic graphic adventure or conversational games.
 > The idea is pretty simple, Johnny5 asks you a question, you answer him and then Johnny5 answers you. On the Real World™ we call it "conversation".
 
