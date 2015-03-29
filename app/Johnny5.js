@@ -65,6 +65,14 @@ var Johnny5 = function ( configuration ) {
     return conversation.questions[ nextQuestion ];
   }
 
+  function getPhrase( phrases ) {
+    if ( phrases instanceof Array === false ) {
+      return phrases;
+    }
+
+    return phrases[ Math.floor( Math.random() * phrases.length ) ];
+  }
+
   function processAnswer( question, answer ) {
     var options;
 
@@ -77,11 +85,15 @@ var Johnny5 = function ( configuration ) {
 
     question = getNextQuestion( options, answer );
     currentQuestion = question;
-    printPhrase( currentQuestion.phrase, 'robot' );
+    printPhrase( getPhrase( currentQuestion.phrase ), 'robot' );
   }
 
   function isEnterKey( key ) {
     return key === 13;
+  }
+
+  function isEmpty( string ) {
+    return string === '';
   }
 
   function resetInput() {
@@ -96,8 +108,8 @@ var Johnny5 = function ( configuration ) {
 
   function bindEvents() {
     input.addEventListener( 'keypress', function ( event ) {
-      if ( isEnterKey( event.keyCode ) ) {
-        var answer = input.value;
+      var answer = input.value;
+      if ( isEnterKey( event.keyCode ) && !isEmpty( answer ) ) {
 
         resetInput();
         printPhrase( answer, 'user' );

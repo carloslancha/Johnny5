@@ -55,7 +55,7 @@ var myConversation = {
     },
 
     5: {
-      phrase: 'My job is done here. Have a nice day!',
+      phrase: [ 'My job is done here. Have a nice day!', 'Bye bye!' ],
       answers: [ {
         goTo: 5
       } ]

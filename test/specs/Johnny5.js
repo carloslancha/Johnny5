@@ -9,6 +9,14 @@ describe( 'I Robot', function () {
       lastOutputMessageEqualsTo( ANY_CONVERSATION.questions[ 0 ].phrase );
     } );
 
+    it( 'does nothing if input is empty on enter keypress', function () {
+      initJohnny5();
+
+      insertAnswer( '' );
+
+      lastOutputMessageEqualsTo( ANY_CONVERSATION.questions[ 0 ].phrase );
+    } );
+
     it( 'prints the expected robot phrase on allowed answer', function ( done ) {
       initJohnny5();
 
