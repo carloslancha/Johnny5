@@ -10,8 +10,18 @@ var Johnny5 = function ( configuration ) {
     userName,
     robotName;
 
+  function scrollDown( node ) {
+    node.scrollTop = node.scrollHeight;
+  }
+
+  function createNode( type, className, content ) {
+    var node = document.createElement( type );
+    node.className = className;
+    node.innerHTML = content;
+    return node;
+  }
+
   function printPhrase( phrase, type ) {
-    var phraseContainer = document.createElement( 'p' );
     var name;
 
     if ( type === 'robot' ) {
@@ -20,21 +30,24 @@ var Johnny5 = function ( configuration ) {
       name = userName;
     }
 
-    phraseContainer.className = type;
-
-    var userNameNode = document.createElement( 'span' );
-    userNameNode.className = 'name';
-    userNameNode.innerHTML = name + ':';
-
-    var phraseNode = document.createElement( 'span' );
-    phraseNode.className = 'phrase';
-    phraseNode.innerHTML = phrase;
+    var userNameNode = createNode( 'span', 'name', name + ':' );
+    var phraseNode = createNode( 'span', 'phrase', phrase );
+    var phraseContainer = createNode( 'p', type );
 
     phraseContainer.appendChild( userNameNode );
     phraseContainer.appendChild( phraseNode );
 
     output.appendChild( phraseContainer );
-    output.scrollTop = output.scrollHeight;
+
+    scrollDown( output );
+  }
+
+  function isFunctiondAndTrue( func, params ) {
+    return typeof func === 'function' && func( params );
+  }
+
+  function answerIsCorrect( expected, actual ) {
+    return expected === actual;
   }
 
   function getNextQuestion( options, answer ) {
@@ -44,7 +57,7 @@ var Johnny5 = function ( configuration ) {
       var option = options[ i ];
       nextQuestion = options[ i ].goTo;
 
-      if ( ( typeof option.answer === 'function' && option.answer( answer ) ) || option.answer === answer ) {
+      if ( isFunctiondAndTrue( option.answer, answer ) || answerIsCorrect( option.answer, answer ) ) {
         break;
       }
     }
@@ -67,15 +80,29 @@ var Johnny5 = function ( configuration ) {
     printPhrase( currentQuestion.phrase, 'robot' );
   }
 
+  function isEnterKey( key ) {
+    return key === 13;
+  }
+
+  function resetInput() {
+    input.value = '';
+  }
+
+  function simulateThinking( answer ) {
+    setTimeout( function () {
+      processAnswer( currentQuestion, answer );
+    }, 500 );
+  }
+
   function bindEvents() {
     input.addEventListener( 'keypress', function ( event ) {
-      if ( event.keyCode === 13 ) {
+      if ( isEnterKey( event.keyCode ) ) {
         var answer = input.value;
-        input.value = '';
+
+        resetInput();
         printPhrase( answer, 'user' );
-        setTimeout( function () {
-          processAnswer( currentQuestion, answer );
-        }, 500 );
+
+        simulateThinking( answer );
       }
     } );
   }
