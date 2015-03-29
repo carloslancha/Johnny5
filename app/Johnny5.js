@@ -64,10 +64,16 @@ var Johnny5 = function ( configuration ) {
     input = configuration.input;
     output = configuration.output;
     currentQuestion = conversation.questions[ conversation.startPhrase ];
+  }
 
+  function start() {
     printPhrase( currentQuestion.phrase, 'robot' );
     bindEvents();
   }
 
   initialize( configuration );
+
+  return {
+    start: start
+  };
 };

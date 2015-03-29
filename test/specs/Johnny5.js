@@ -186,11 +186,12 @@ describe( 'I Robot', function () {
 
 
   function initJohnny5() {
-    Johnny5( {
+    var myJohnny5 = new Johnny5( {
       input: $( ANY_INPUT )[ 0 ],
       output: $( ANY_OUTPUT )[ 0 ],
       conversation: ANY_CONVERSATION
     } );
+    myJohnny5.start();
   }
 
   function insertAnswer( answer ) {

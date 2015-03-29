@@ -71,8 +71,10 @@ var myConversation = {
   }
 };
 
-Johnny5( {
+var myJohnny5 = new Johnny5( {
   input: document.getElementById( 'input' ),
   output: document.getElementById( 'output' ),
   conversation: myConversation
 } );
+
+myJohnny5.start();
