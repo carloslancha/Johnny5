@@ -168,3 +168,7 @@ var myJohnny5 = new Johnny5( {
 
 myJohnny5.start();
 ```
+
+### Demo
+
+You can check a live demo <a href="http://carloslancha.github.io/johnny5/">here</a>.
