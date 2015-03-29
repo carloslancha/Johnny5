@@ -1,4 +1,7 @@
-function Johnny5( configuration ) {
+/*exported Johnny5 */
+var Johnny5 = function ( configuration ) {
+  'use strict';
+
   var conversation,
     currentQuestion,
     prevQuestion,
@@ -43,7 +46,7 @@ function Johnny5( configuration ) {
 
   function bindEvents() {
     input.addEventListener( 'keypress', function ( event ) {
-      if ( event.keyCode == 13 ) {
+      if ( event.keyCode === 13 ) {
         var answer = input.value;
         input.value = '';
         processAnswer( currentQuestion, answer );
@@ -62,4 +65,4 @@ function Johnny5( configuration ) {
   }
 
   initialize( configuration );
-}
+};
