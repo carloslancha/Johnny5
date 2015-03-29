@@ -32,7 +32,7 @@ var Johnny5 = function ( configuration ) {
 
     var userNameNode = createNode( 'span', 'name', name + ':' );
     var phraseNode = createNode( 'span', 'phrase', phrase );
-    var phraseContainer = createNode( 'p', type );
+    var phraseContainer = createNode( 'p', type, '' );
 
     phraseContainer.appendChild( userNameNode );
     phraseContainer.appendChild( phraseNode );
