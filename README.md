@@ -24,6 +24,16 @@ Type: `DOM element`
 
 The output element where Johnny5 will prints her phrases.
 
+#### robotName
+Type: `String`
+
+The name of the robot. Will be printed in his chat messages.
+
+#### userName
+Type: `String`
+
+The name of the user. Will be printed in his chat messages.
+
 #### conversation
 Type: `Object`
 
@@ -78,6 +88,8 @@ Id of the `conversation.questions` that Johnny5 will ask after the answer.
 var myJohnny5 = new Johnny5( {
     input: document.getElementById('input'),
     output: document.getElementById('output'),
+    robotName: 'Johnny 5',
+    userName: 'You',
     conversation: {
         startPhrase: 0,
         questions: {
