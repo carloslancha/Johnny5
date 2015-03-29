@@ -74,7 +74,9 @@ var myConversation = {
 var myJohnny5 = new Johnny5( {
   input: document.getElementById( 'input' ),
   output: document.getElementById( 'output' ),
-  conversation: myConversation
+  conversation: myConversation,
+  robotName: 'Johnny 5',
+  userName: 'You'
 } );
 
 myJohnny5.start();

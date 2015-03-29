@@ -184,11 +184,16 @@ describe( 'I Robot', function () {
     }
   };
 
+  var robotName = 'Johnny5';
+  var userName = 'You';
+
 
   function initJohnny5() {
     var myJohnny5 = new Johnny5( {
       input: $( ANY_INPUT )[ 0 ],
       output: $( ANY_OUTPUT )[ 0 ],
+      robotName: robotName,
+      userName: userName,
       conversation: ANY_CONVERSATION
     } );
     myJohnny5.start();
@@ -219,13 +224,22 @@ describe( 'I Robot', function () {
   }
 
   function lastOutputMessageEqualsTo( phrase ) {
-    var robotMessages = $( ANY_OUTPUT + ' p.robot' );
-    expect( $( robotMessages )[ robotMessages.length - 1 ] ).toHaveText( phrase );
+    var messages = $( ANY_OUTPUT + ' p.robot' );
+
+    lastMessageEqualsTo( messages, robotName, phrase );
   }
 
   function lastInputMessageEqualsTo( phrase ) {
-    var userMessages = $( ANY_OUTPUT + ' p.user' );
-    expect( $( userMessages )[ userMessages.length - 1 ] ).toHaveText( phrase );
+    var messages = $( ANY_OUTPUT + ' p.user' );
+
+    lastMessageEqualsTo( messages, userName, phrase );
+  }
+
+  function lastMessageEqualsTo( messages, name, phrase ) {
+    var lastMessage = $( messages[ messages.length - 1 ] );
+
+    expect( lastMessage.find( '.name' ) ).toHaveText( name + ':' );
+    expect( lastMessage.find( '.phrase' ) ).toHaveText( phrase );
   }
 
 } );

@@ -6,13 +6,34 @@ var Johnny5 = function ( configuration ) {
     currentQuestion,
     prevQuestion,
     input,
-    output;
+    output,
+    userName,
+    robotName;
 
   function printPhrase( phrase, type ) {
-    var phraseNode = document.createElement( 'p' );
-    phraseNode.className = type;
+    var phraseContainer = document.createElement( 'p' );
+    var name;
+
+    if ( type === 'robot' ) {
+      name = robotName;
+    } else {
+      name = userName;
+    }
+
+    phraseContainer.className = type;
+
+    var userNameNode = document.createElement( 'span' );
+    userNameNode.className = 'name';
+    userNameNode.innerHTML = name + ':';
+
+    var phraseNode = document.createElement( 'span' );
+    phraseNode.className = 'phrase';
     phraseNode.innerHTML = phrase;
-    output.appendChild( phraseNode );
+
+    phraseContainer.appendChild( userNameNode );
+    phraseContainer.appendChild( phraseNode );
+
+    output.appendChild( phraseContainer );
     output.scrollTop = output.scrollHeight;
   }
 
@@ -64,6 +85,8 @@ var Johnny5 = function ( configuration ) {
     input = configuration.input;
     output = configuration.output;
     currentQuestion = conversation.questions[ conversation.startPhrase ];
+    robotName = configuration.robotName;
+    userName = configuration.userName;
   }
 
   function start() {

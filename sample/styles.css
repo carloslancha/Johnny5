@@ -28,6 +28,11 @@ body {
 	color: #4D5159;
 }
 
+#output p span.name {
+	font-weight: bold;
+	margin-right: 5px;
+}
+
 #output p.robot {
 	background-color: #FFF3D9;
 	text-align: right;
