@@ -8,10 +8,12 @@ var Johnny5 = function ( configuration ) {
     input,
     output;
 
-  function printQuestion( question ) {
-    var questionNode = document.createElement( 'p' );
-    questionNode.innerHTML = question.phrase;
-    output.appendChild( questionNode );
+  function printPhrase( phrase, type ) {
+    var phraseNode = document.createElement( 'p' );
+    phraseNode.className = type;
+    phraseNode.innerHTML = phrase;
+    output.appendChild( phraseNode );
+    output.scrollTop = output.scrollHeight;
   }
 
   function getNextQuestion( options, answer ) {
@@ -41,7 +43,7 @@ var Johnny5 = function ( configuration ) {
 
     question = getNextQuestion( options, answer );
     currentQuestion = question;
-    printQuestion( currentQuestion );
+    printPhrase( currentQuestion.phrase, 'robot' );
   }
 
   function bindEvents() {
@@ -49,7 +51,10 @@ var Johnny5 = function ( configuration ) {
       if ( event.keyCode === 13 ) {
         var answer = input.value;
         input.value = '';
-        processAnswer( currentQuestion, answer );
+        printPhrase( answer, 'user' );
+        setTimeout( function () {
+          processAnswer( currentQuestion, answer );
+        }, 500 );
       }
     } );
   }
@@ -60,7 +65,7 @@ var Johnny5 = function ( configuration ) {
     output = configuration.output;
     currentQuestion = conversation.questions[ conversation.startPhrase ];
 
-    printQuestion( currentQuestion );
+    printPhrase( currentQuestion.phrase, 'robot' );
     bindEvents();
   }
 

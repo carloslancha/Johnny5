@@ -1,73 +1,104 @@
+/*globals describe, it, expect, beforeEach, jasmine, loadFixtures, Johnny5, $*/
 describe( 'I Robot', function () {
+  'use strict';
 
   describe( 'on first question', function () {
-    it( 'prints the first phrase in the output', function () {
+    it( 'prints the first robot phrase in the output', function () {
       initJohnny5();
 
       lastOutputMessageEqualsTo( ANY_CONVERSATION.questions[ 0 ].phrase );
     } );
 
-    it( 'prints the expected phrase on allowed answer', function () {
+    it( 'prints the expected robot phrase on allowed answer', function ( done ) {
       initJohnny5();
 
       insertAnswer( 'yes' );
 
-      lastOutputMessageEqualsTo( ANY_CONVERSATION.questions[ 1 ].phrase );
+      setTimeout( function () {
+        lastOutputMessageEqualsTo( ANY_CONVERSATION.questions[ 1 ].phrase );
+        done();
+      }, 600 );
     } );
 
-    it( 'prints the expected phrase on other allowed answer', function () {
+    it( 'prints the expected user phrase on allowed answer', function () {
+      initJohnny5();
+
+      insertAnswer( 'yes' );
+
+      lastInputMessageEqualsTo( 'yes' );
+    } );
+
+    it( 'prints the expected robot phrase on other allowed answer', function ( done ) {
       initJohnny5();
 
       insertAnswer( 'no' );
 
-      lastOutputMessageEqualsTo( ANY_CONVERSATION.questions[ 2 ].phrase );
+      setTimeout( function () {
+        lastOutputMessageEqualsTo( ANY_CONVERSATION.questions[ 2 ].phrase );
+        done();
+      }, 600 );
     } );
 
-    it( 'prints the expected phrase on not allowed answer', function () {
+    it( 'prints the expected robot phrase on not allowed answer', function ( done ) {
       initJohnny5();
 
       insertAnswer( 'i am your father' );
 
-      lastOutputMessageEqualsTo( ANY_CONVERSATION.questions[ 6 ].phrase );
+      setTimeout( function () {
+        lastOutputMessageEqualsTo( ANY_CONVERSATION.questions[ 6 ].phrase );
+        done();
+      }, 600 );
     } );
   } );
 
   describe( 'on not first question', function () {
-    it( 'prints the expected phrase on allowed answer', function () {
+    it( 'prints the expected phrase on allowed answer', function ( done ) {
       initJohnny5();
       insertAnswer( 'no' );
 
       insertAnswer( 'bah' );
 
-      lastOutputMessageEqualsTo( ANY_CONVERSATION.questions[ 2 ].phrase );
+      setTimeout( function () {
+        lastOutputMessageEqualsTo( ANY_CONVERSATION.questions[ 2 ].phrase );
+        done();
+      }, 600 );
     } );
 
-    it( 'prints the expected phrase on not allowed answer', function () {
+    it( 'prints the expected phrase on not allowed answer', function ( done ) {
       initJohnny5();
       insertAnswer( 'no' );
 
       insertAnswer( 'i am your father' );
 
-      lastOutputMessageEqualsTo( ANY_CONVERSATION.questions[ 3 ].phrase );
+      setTimeout( function () {
+        lastOutputMessageEqualsTo( ANY_CONVERSATION.questions[ 3 ].phrase );
+        done();
+      }, 600 );
     } );
   } );
 
-  it( 'prints the expected phrase if validates the answer with passed callback', function () {
+  it( 'prints the expected phrase if validates the answer with passed callback', function ( done ) {
     initJohnny5();
     insertAnswer( 'yes' );
 
     insertAnswer( 'email' );
 
-    lastOutputMessageEqualsTo( ANY_CONVERSATION.questions[ 4 ].phrase );
+    setTimeout( function () {
+      lastOutputMessageEqualsTo( ANY_CONVERSATION.questions[ 4 ].phrase );
+      done();
+    }, 600 );
   } );
 
-  it( 'prints the expected phrase if does not alidate the answer with passed callback', function () {
+  it( 'prints the expected phrase if does not alidate the answer with passed callback', function ( done ) {
     initJohnny5();
     insertAnswer( 'yes' );
 
     insertAnswer( 'i am your father' );
 
-    lastOutputMessageEqualsTo( ANY_CONVERSATION.questions[ 7 ].phrase );
+    setTimeout( function () {
+      lastOutputMessageEqualsTo( ANY_CONVERSATION.questions[ 7 ].phrase );
+      done();
+    }, 600 );
   } );
 
   beforeEach( function () {
@@ -186,8 +217,14 @@ describe( 'I Robot', function () {
     el.dispatchEvent( nEvent );
   }
 
-  function lastOutputMessageEqualsTo( question ) {
-    expect( $( ANY_OUTPUT + ' p:last-child' ) ).toHaveText( question );
+  function lastOutputMessageEqualsTo( phrase ) {
+    var robotMessages = $( ANY_OUTPUT + ' p.robot' );
+    expect( $( robotMessages )[ robotMessages.length - 1 ] ).toHaveText( phrase );
+  }
+
+  function lastInputMessageEqualsTo( phrase ) {
+    var userMessages = $( ANY_OUTPUT + ' p.user' );
+    expect( $( userMessages )[ userMessages.length - 1 ] ).toHaveText( phrase );
   }
 
 } );
